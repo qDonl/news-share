@@ -7,6 +7,7 @@ from .serializers import NewsSerializer
 
 
 def index(request):
+    # 首页新闻列表信息
     categories = NewsCategory.objects.all()
 
     count = settings.ONE_PAGE_NEWS_COUNT

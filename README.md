@@ -1,6 +1,7 @@
 ### 版本
 Package|Version
 ----|----
+Python|3.7.2
 Django|2.1
 djangorestframework|3.10.2
 django-shortuuidfield|0.1.3

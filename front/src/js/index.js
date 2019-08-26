@@ -8,9 +8,6 @@
 // function Banner() {
 //     // 这个里面写的代码
 //     // 相当于是Python中的__init__方法的代码
-//     console.log('构造函数');
-//     this.person = 'zhiliao';
-// }
 //
 // Banner.prototype.greet = function (word) {
 //     console.log('hello ',word);
@@ -18,7 +15,7 @@
 //
 // var banner = new Banner();
 // console.log(banner.person);
-// banner.greet('zhiliao');
+// banner.greet('hello world');
 
 function Banner() {
     this.bannerWidth = 798;
@@ -156,6 +153,7 @@ function News() {
 }
 
 News.prototype.listenLoadMoreEvent = function () {
+    // ajax 加载更多新闻
     var self = this;
     var loadMoreBtn = $("#load-more");
     loadMoreBtn.click(function (event) {
