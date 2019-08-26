@@ -21,10 +21,18 @@ def index(request):
 
 def news_list(request):
     # 通过查询字符串的方式获取当前是第几页
-    p = int(request.GET.get('p', 1))
-    start = (p - 1) * settings.ONE_PAGE_NEWS_COUNT
+    page = int(request.GET.get('p', 1))
+    start = (page - 1) * settings.ONE_PAGE_NEWS_COUNT
     end = start + settings.ONE_PAGE_NEWS_COUNT
-    newses = News.objects.all()[start:end]
+
+    # 获取新闻分类, 默认0为, 新闻内容倒叙排序"最新咨询"
+    category_id = int(request.GET.get("category_id", 0))
+
+    if category_id == 0:
+        newses = News.objects.all()[start:end]
+    else:
+        newses = News.objects.filter(category=category_id)[start:end]
+
     serializer = NewsSerializer(newses, many=True)
     return restfuls.success(data=serializer.data)
 

@@ -150,6 +150,8 @@ Banner.prototype.run = function () {
 // 首页新闻加载
 function News() {
     this.page = 2;  // 当前获取的是 "第几页"
+    this.category_id = 0;
+    this.loadMoreBtn = $("#load-more");
 
     // 定义 art-template 模板过滤器
     template.defaults.imports.timeSince = function (dateValue) {
@@ -183,13 +185,13 @@ function News() {
 News.prototype.listenLoadMoreEvent = function () {
     // ajax 加载更多新闻
     var self = this;
-    var loadMoreBtn = $("#load-more");
-    loadMoreBtn.click(function (event) {
+    self.loadMoreBtn.click(function (event) {
         event.preventDefault();
         $.get({
             url: '/news/list/',
             data: {
                 p: self.page,
+                category_id: self.category_id,
             },
             success: function (data) {
                 if (data['code'] == 200) {
@@ -200,7 +202,7 @@ News.prototype.listenLoadMoreEvent = function () {
                         ul.append(tpl);
                         self.page += 1;
                     } else {
-                        loadMoreBtn.hide();
+                        self.loadMoreBtn.hide();
                     }
 
                 } else {
@@ -214,8 +216,41 @@ News.prototype.listenLoadMoreEvent = function () {
     });
 };
 
+News.prototype.listenCategorySwitchEvent = function () {
+    var self = this;
+    var listTab = $(".list-tab");
+    listTab.children().click(function () {
+        var li = $(this);
+        var category_id = li.attr("data-category");
+        var page = 1;
+        self.loadMoreBtn.show();
+        $.get({
+            url: '/news/list/',
+            data: {
+                category_id: category_id,
+                p: page
+            },
+            success: function (data) {
+                if (data['code'] == 200) {
+                    var newses = data['data'];
+                    var tpl = template("news-item", {"newses": newses});
+                    var ul = $(".list-inner-group");
+                    ul.empty();
+                    ul.append(tpl);
+                    self.page = 2;
+                    self.category_id = category_id;
+                    li.addClass('active').siblings().removeClass('active');
+                } else {
+                    window.dataMessage.getMessage(data)
+                }
+            }
+        })
+    });
+};
+
 News.prototype.run = function () {
     this.listenLoadMoreEvent();
+    this.listenCategorySwitchEvent();
 };
 
 $(function () {
