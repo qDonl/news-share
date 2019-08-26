@@ -42,10 +42,13 @@ INSTALLED_APPS = [
     'apps.payinfo',
     'apps.course',
     'apps.ueditor',
+
+    'debug_toolbar',
     'rest_framework',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -166,3 +169,19 @@ UEDITOR_CONFIG_PATH = os.path.join(BASE_DIR, 'front', 'dist', 'ueditor', 'config
 
 # 每次显示多少篇新闻
 ONE_PAGE_NEWS_COUNT = 2
+
+# Django-debug-toolbar 相关配置信息
+INTERNAL_IPS = ['127.0.0.1']
+
+DEBUG_TOOLBAR_PANELS = [
+    # 展示页面加载的时间
+    'debug_toolbar.panels.timer.TimerPanel',
+    # 展示页面请求头和响应信息
+    'debug_toolbar.panels.headers.HeadersPanel',
+    # 展示当前请求信息(视图函数, cookie信息, session信息等)
+    'debug_toolbar.panels.request.RequestPanel',
+    # 展示 SQL 查询操作
+    'debug_toolbar.panels.sql.SQLPanel',
+    # 缓存信息
+    'debug_toolbar.panels.cache.CachePanel',
+]

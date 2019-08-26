@@ -9,5 +9,6 @@ mysqlclient|1.4.2
 Pillow|6.1.0
 python-memcached|1.59
 qiniu|7.62
+django-debug-toolbar|2.0
 
 

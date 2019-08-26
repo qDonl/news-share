@@ -19,13 +19,13 @@
       {{ each newses news index }}
       <li>
          <div class="thumbnail-group">
-            <a href="#">
+            <a href="/news/{{ news.id }}" target="_blank">
                <img src="{{ news.thumbnail }}" alt="">
             </a>
          </div>
          <div class="news-group">
             <p class="title">
-               <a href="#">{{ news.title }}</a>
+               <a href="/news/{{ news.id }}" target="_blank">{{ news.title }}</a>
             </p>
             <p class="desc">
                {{ news.desc }}
@@ -90,13 +90,13 @@
                   {% for news in newses %}
                      <li>
                         <div class="thumbnail-group">
-                           <a href="#">
+                           <a href="{% url 'detail' news_id=news.pk %}" target="_blank">
                               <img src="{{ news.thumbnail }}" alt="">
                            </a>
                         </div>
                         <div class="news-group">
                            <p class="title">
-                              <a href="#">{{ news.title }}</a>
+                              <a href="{% url 'detail' news_id=news.pk %}" target="_blank">{{ news.title }}</a>
                            </p>
                            <p class="desc">
                               {{ news.desc }}
