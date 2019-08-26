@@ -11,7 +11,7 @@ def index(request):
     categories = NewsCategory.objects.all()
 
     count = settings.ONE_PAGE_NEWS_COUNT
-    newses = News.objects.all().order_by('-pub_time')[0:count]
+    newses = News.objects.all()[0:count]
     context = {
         'categories': categories,
         'newses': newses
@@ -24,7 +24,7 @@ def news_list(request):
     p = int(request.GET.get('p', 1))
     start = (p - 1) * settings.ONE_PAGE_NEWS_COUNT
     end = start + settings.ONE_PAGE_NEWS_COUNT
-    newses = News.objects.all().order_by('-pub_time')[start:end]
+    newses = News.objects.all()[start:end]
     serializer = NewsSerializer(newses, many=True)
     return restfuls.success(data=serializer.data)
 

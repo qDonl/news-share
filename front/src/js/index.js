@@ -149,7 +149,35 @@ Banner.prototype.run = function () {
 
 // 首页新闻加载
 function News() {
-    this.page = 2;
+    this.page = 2;  // 当前获取的是 "第几页"
+
+    // 定义 art-template 模板过滤器
+    template.defaults.imports.timeSince = function (dateValue) {
+        var date = new Date(dateValue);
+        var dateStamp = date.getTime();
+        var nowStamp = (new Date()).getTime();
+        var timeStamp = (nowStamp - dateStamp) / 1000;
+
+        if (timeStamp < 60) {  // 一分钟之内
+            return "刚刚"
+        } else if (timeStamp >= 60 && timeStamp < (60 * 60)) {  // 1分钟 ~ 1小时间
+            var minutes = parseInt(timeStamp / 60);
+            return minutes + "分钟前"
+        } else if (timeStamp >= 60 * 60 && timeStamp < (60 * 60 * 24)) {  // 1小时 ~ 1天间
+            var hours = parseInt(timeStamp / (60 * 60));
+            return hours + "小时前"
+        } else if (timeStamp >= 60 * 60 * 24 && timeStamp < (60 * 60 * 24 * 30)) {  // 1天 ~ 1月
+            var days = parseInt(timeStamp / (60 * 60 * 24));
+            return days + "天前";
+        } else {
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getDay();
+            var minute = date.getMinutes();
+            return year + "/" + month + "/" + day + " " + hour + ":" + minute;
+        }
+    }
 }
 
 News.prototype.listenLoadMoreEvent = function () {
@@ -171,7 +199,7 @@ News.prototype.listenLoadMoreEvent = function () {
                         var ul = $(".list-inner-group");
                         ul.append(tpl);
                         self.page += 1;
-                    }else {
+                    } else {
                         loadMoreBtn.hide();
                     }
 

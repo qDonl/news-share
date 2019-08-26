@@ -15,3 +15,6 @@ class News(models.Model):
     author = models.ForeignKey('xfzauth.User', on_delete=models.DO_NOTHING, null=True)
     pub_time = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-pub_time']
+
