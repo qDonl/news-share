@@ -150,6 +150,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist')
 ]
 
+# 七牛云存储相关信息
 QINIU_ACCESS_KEY = 'XtOdmw7PAZkUGv0qCebqUsCAfXSTgrY7H9M_XfTq'
 QINIU_SECRET_KEY = '7tblRCyFyGyy9K_BMEY1bxV1PzQvvvFszzBCTAF3'
 QINIU_DOMAIN = 'http://pwm9160nr.bkt.clouddn.com/'

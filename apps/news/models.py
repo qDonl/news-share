@@ -18,3 +18,18 @@ class News(models.Model):
     class Meta:
         ordering = ['-pub_time']
 
+
+class Comment(models.Model):
+    # 新闻评论
+    content = models.TextField()
+    pub_time = models.DateTimeField(auto_now_add=True)
+    news = models.ForeignKey("News", related_name='comments',
+                             on_delete=models.CASCADE)
+    author = models.ForeignKey("xfzauth.User", related_name='comments',
+                               on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.news_id}: {self.content}"
+
+    class Meta:
+        ordering = ('-pub_time',)

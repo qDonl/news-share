@@ -1,10 +1,13 @@
-from django.shortcuts import render
-from apps.news.models import News, NewsCategory
 from django.conf import settings
 from django.http import Http404
+from django.shortcuts import render
 
+from apps.news.models import News, NewsCategory
+from apps.xfzauth.decorators import auth_login_required
 from utils import restfuls
-from .serializers import NewsSerializer
+from .forms import CommentForm
+from .models import Comment
+from .serializers import NewsSerializer, CommentSerializer
 
 
 def index(request):
@@ -41,13 +44,30 @@ def news_list(request):
 def news_detail(request, news_id):
     # 新闻详情
     try:
-        news = News.objects.prefetch_related('category', 'author').get(pk=news_id)
+        news = News.objects.select_related('category', 'author').get(pk=news_id)
+        # 在后台查询数据库 comment, 相对于 news.comments 将会执行更少的sql查询
+        # 只展示最新的10条新闻
+        comments = Comment.objects.select_related('author').filter(news_id=news_id)[:10]
         context = {
-            'news': news
+            'news': news,
+            'comments': comments,
         }
         return render(request, 'news/news_detail.html', context=context)
-    except:
+    except News.DoesNotExist:
         raise Http404
+
+
+@auth_login_required
+def publish_comment(request):
+    # 发布评论
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        news_id = form.cleaned_data.get('news_id')
+        content = form.cleaned_data.get("content")
+        comment = Comment.objects.create(news_id=news_id, content=content, author=request.user)
+        serializer = CommentSerializer(comment)
+        return restfuls.success(data=serializer.data)
+    return restfuls.bad_request(msg=form.get_errors())
 
 
 def news_search(request):

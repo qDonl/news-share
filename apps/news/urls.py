@@ -9,4 +9,5 @@ app_nam = 'news'
 urlpatterns = [
     path('<int:news_id>/', views.news_detail, name='detail'),  # 新闻详情
     path("list/", views.news_list, name='news-list'),  # 动态展示新闻
+    path('comment/', views.publish_comment, name='comment'),   # 新闻评论
 ]
