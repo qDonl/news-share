@@ -1,0 +1,25 @@
+.btn-group, .tips {
+   float: left;
+}
+
+.banner-item {
+      width: 800px;
+
+      .thumbnail-group {
+         width: 230px;
+         float: left;
+
+         .thumbnail {
+            width: 100%;
+         }
+      }
+
+      .more-group {
+         float: left;
+         margin-left: 40px;
+
+         .form-group {
+            width: 300px;
+         }
+      }
+   }

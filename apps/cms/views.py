@@ -95,6 +95,10 @@ def upload_file(request):
     return restfuls.success(data={'url': url})
 
 
+def banners(request):
+    return render(request, 'cms/banner.html')
+
+
 @require_GET
 def qntoken(request):
     access_key = settings.QINIU_ACCESS_KEY

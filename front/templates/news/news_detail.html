@@ -14,7 +14,7 @@
    <script id="comment-item" type="text/html">
       <li>
          <div class="comment-info">
-            <img src="https://cn.bing.com/th?id=OIP.VOaro0AryrgU8lDTnxs0XwAAAA&pid=Api&rs=1"
+            <img src="/static/imgs/default-avatar.jpg"
                  alt="" class="avatar">
             <span class="author">{{ comment.author.username }}</span>
             <span class="pub-time">{{ comment.pub_time|timeSince }}</span>
@@ -52,13 +52,13 @@
             <div class="comment-wrapper">
                <h3 class="title">文章评论（0）</h3>
                {% if user.is_authenticated %}
-                  <textarea name="comment" class="comment-textarea logined-textarea" placeholder="抒发感想了"></textarea>
+                  <textarea name="comment" class="comment-textarea logined-textarea" placeholder="我有些话, 不知当讲不当讲 ....."></textarea>
                {% else %}
                   <textarea disabled name="comment" class="comment-textarea nologined-textarea"
                             placeholder="立即登录，参与评论~"></textarea>
                {% endif %}
                <div class="submit-btn-group">
-                  <button class="submit-btn" data-news="{{ news.pk }}">立即评论</button>
+                  <button class="comment-submit-btn" data-news="{{ news.pk }}">立即评论</button>
                </div>
                <ul class="comment-list">
                   {% for comment in comments %}

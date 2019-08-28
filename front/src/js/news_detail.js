@@ -3,7 +3,7 @@ function NewsDetail() {
 }
 
 NewsDetail.prototype.publishCommentEvent = function () {
-    var submitBtn = $(".submit-btn");
+    var submitBtn = $(".comment-submit-btn");
     var textarea = $("textarea[name=comment]");
     submitBtn.click(function (event) {
         event.preventDefault();

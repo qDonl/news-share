@@ -7,4 +7,4 @@ from apps.form import FormMixin
 
 class CommentForm(forms.Form, FormMixin):
     news_id = forms.IntegerField()
-    content = forms.CharField()
+    content = forms.CharField(error_messages={'required': "请发言!"})

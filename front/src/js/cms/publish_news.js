@@ -14,7 +14,6 @@ PublishNews.prototype.listenUploadEvent = function () {
     // 将文件上传到本地服务器 (已弃用)
     var uploadBtn = $("#thumbnail-btn");
     uploadBtn.change(function () {
-        console.log(uploadBtn);
         var file = uploadBtn[0].files[0];
         var formData = new FormData();
         formData.append('file', file);
@@ -54,7 +53,6 @@ PublishNews.prototype.qiniuUploadEvent = function () {
                 if (data['code'] == 200) {
                     var token = data['token'];
                     var key = (new Date()).getTime() + '.' + file.name.split('.')[1];
-                    console.log("token:" + token + 'key:' + key);
 
                     var putExtra = {  // 额外参数
                         fname: key,
@@ -85,7 +83,6 @@ PublishNews.prototype.qiniuUploadEvent = function () {
 
 PublishNews.prototype.handleFileUploadNext = function (response) {
     // 处理上传进度
-    var self = this;
     var total = response.total;
     var percent = total.percent.toFixed(0) + '%';  // 不需要小数点
     var progressGroup = $("#progress-group");
