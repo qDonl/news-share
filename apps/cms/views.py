@@ -12,6 +12,7 @@ from apps.news.models import NewsCategory, News
 from utils import restfuls
 from .forms import EditNewsCategoryForm, AddBannerForm
 from .models import Banner
+from .serializers import BannerSerializer
 
 
 @staff_member_required(login_url='index')
@@ -96,9 +97,16 @@ def upload_file(request):
     return restfuls.success(data={'url': url})
 
 
-def banners(request):
+def banner(request):
     # 管理轮播图
     return render(request, 'cms/banner.html')
+
+
+def load_banner(request):
+    # ajax 加载轮播图
+    banners = Banner.objects.all()
+    serializer = BannerSerializer(banners, many=True)
+    return restfuls.success(data=serializer.data)
 
 
 @require_POST

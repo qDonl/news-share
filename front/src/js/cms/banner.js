@@ -2,26 +2,51 @@ function Banner() {
 
 }
 
+Banner.prototype.createBannerItem = function (banner) {
+    // 创建轮播图盒子
+    var self = this;
+    var tpl = template("banner-item", {"banner": banner});
+    var bannerListGroup = $(".banner-list-group");
+
+    var bannerItem = null;
+    if (banner) {
+        bannerListGroup.append(tpl);
+        bannerItem = bannerListGroup.find(".banner-item:last");
+    } else {
+        bannerListGroup.prepend(tpl);
+        bannerItem = bannerListGroup.find(".banner-item:first");
+    }
+
+    self.insertBannerImageEvent(bannerItem);
+    self.removeBannerItemEvent(bannerItem);
+    self.saveBannerEvent(bannerItem);
+};
+
+Banner.prototype.loadBanner = function () {
+    var self = this;
+    $.get({
+        url: '/cms/banner/load/',
+        success: function (result) {
+            var banners = result['data'];
+            for (var i = 0; i < banners.length; i++) {
+                var banner = banners[i];
+                self.createBannerItem(banner);
+            }
+        }
+    })
+};
 
 Banner.prototype.addBannerEvent = function () {
     // 展示添加轮播图盒子
     var self = this;
     var bannerAdd = $("#banner-add");  // 添加轮播图按钮
-    var bannerListGroup = $(".banner-list-group");
     bannerAdd.click(function () {
-        var tpl = template("banner-item");
-        bannerListGroup.prepend(tpl);
-
-        var bannerItem = bannerListGroup.find(".banner-item:first");
-        self.insertBannerImageEvent(bannerItem);
-        self.removeBannerItemEvent(bannerItem);
-        self.saveBannerEvent(bannerItem);
+        self.createBannerItem();
     })
 };
 
 Banner.prototype.insertBannerImageEvent = function (bannerItem) {
     // 插入轮播图图片
-    console.log('插入轮播图 ...');
     var self = this;
     var image = bannerItem.find(".thumbnail");
     var imgInput = image.siblings(".image-input");
@@ -136,13 +161,41 @@ Banner.prototype.saveBannerEvent = function (bannerItem) {
 Banner.prototype.removeBannerItemEvent = function (bannerItem) {
     // 移除轮播图
     var removeBtn = bannerItem.find(".remove-banner");
+    var bannerId = bannerItem.attr("data-banner");
     removeBtn.click(function () {
-        bannerItem.remove();
+        if (!bannerId) {
+            bannerItem.remove();
+        }else {
+            swalert.alertConfirm({
+                "title": "删除",
+                'msg': "是否要删除当前轮播图?",
+                "confirmCallback": function () {
+                    $.get({
+                        "url": "/cms/banner/remove/",
+                        "data": {
+                            bid: bannerId
+                        },
+                        "success": function (result) {
+                            if (result['code']==200) {
+                                window.messageBox.showSuccess("删除成功");
+                                bannerItem.remove();
+                            } else {
+                                window.messageBox.showError("发生了错误")
+                            }
+                        },
+                        "fail": function (error) {
+                            window.messageBox.showError(error);
+                        }
+                    })
+                }
+            })
+        }
     })
 };
 
 Banner.prototype.run = function () {
     this.addBannerEvent();
+    this.loadBanner();
 };
 
 $(function () {
