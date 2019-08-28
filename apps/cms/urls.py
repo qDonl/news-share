@@ -16,5 +16,7 @@ urlpatterns = [
     path("news/category/delete/", views.delete_category_category, name='delete-news-category'),
     path("upload/", views.upload_file, name='upload'),  # 弃用
     path("banner/", views.banners, name='banner'),
+    path('banner/add/', views.add_banner, name="banner-add"),
+    path("banner/remove/", views.remove_banner, name='banner-remove'),
     path('qntoken/', views.qntoken, name='qntoken'),
 ]

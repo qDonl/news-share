@@ -3,14 +3,15 @@ import os
 import qiniu
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
 
 from apps.cms.forms import PublishNewsForm
 from apps.news.models import NewsCategory, News
 from utils import restfuls
-from .forms import EditNewsCategoryForm
+from .forms import EditNewsCategoryForm, AddBannerForm
+from .models import Banner
 
 
 @staff_member_required(login_url='index')
@@ -96,10 +97,30 @@ def upload_file(request):
 
 
 def banners(request):
+    # 管理轮播图
     return render(request, 'cms/banner.html')
 
 
-@require_GET
+@require_POST
+def add_banner(request):
+    # 添加轮播图
+    form = AddBannerForm(request.POST)
+    if form.is_valid():
+        priority = form.cleaned_data.get('priority')
+        image_url = form.cleaned_data.get('image_url')
+        link_to = form.cleaned_data.get('link_to')
+        banner = Banner.objects.create(priority=priority, image_url=image_url, link_to=link_to)
+        return restfuls.success(data={"banner_id": banner.pk})
+    return restfuls.bad_request(form.get_errors())
+
+
+def remove_banner(request):
+    bid = request.GET.get('bid')
+    banner = get_object_or_404(Banner, pk=bid)
+    banner.delete()
+    return restfuls.success()
+
+
 def qntoken(request):
     access_key = settings.QINIU_ACCESS_KEY
     secret_key = settings.QINIU_SECRET_KEY

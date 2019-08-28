@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from apps.news.models import News, NewsCategory
 from apps.xfzauth.decorators import auth_login_required

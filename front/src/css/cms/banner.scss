@@ -3,23 +3,29 @@
 }
 
 .banner-item {
-      width: 800px;
+   width: 800px;
 
-      .thumbnail-group {
-         width: 230px;
-         float: left;
+   .thumbnail-group {
+      width: 230px;
+      height: 80px;
+      float: left;
 
-         .thumbnail {
-            width: 100%;
-         }
-      }
-
-      .more-group {
-         float: left;
-         margin-left: 40px;
-
-         .form-group {
-            width: 300px;
-         }
+      .thumbnail {
+         width: 100%;
+         height: 80px;
       }
    }
+
+   .more-group {
+      float: left;
+      margin-left: 40px;
+
+      .form-group {
+         width: 500px;
+      }
+   }
+   .banner-process-group {
+      display: none;
+   }
+
+}

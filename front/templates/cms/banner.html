@@ -41,31 +41,37 @@
 
    {% verbatim %}
    <script id="banner-item" type="text/html">
-   <div class="box banner-item">
-      <div class="box-header">
-         <span>优先级: 0</span>
-         <button class="btn btn-default btn-xs pull-right">
-            <i class="fa fa-close"></i>
-         </button>
-      </div>
-      <div class="box-body">
-         <div class="thumbnail-group">
-            <input type="file" style="display: none;" class="image-input">
-            <img src="/static/imgs/banner.png" alt="" class="thumbnail">
+      <div class="box banner-item">
+         <div class="box-header">
+            <span>优先级: 0</span>
+            <button class="btn btn-default btn-xs pull-right remove-banner">
+               <i class="fa fa-close"></i>
+            </button>
          </div>
-         <div class="more-group">
-            <div class="form-group">
-               <input type="number" name="priority" placeholder="优先级" class="form-control">
+         <div class="box-body">
+            <div class="thumbnail-group">
+               <input type="file" style="display: none;" class="image-input">
+               <img src="/static/imgs/banner.png" alt="" class="thumbnail">
             </div>
-            <div class="form-group">
-               <input type="text" name="link_to" placeholder="跳转链接" class="form-control">
+            <div class="more-group">
+               <div class="form-group">
+                  <input type="number" name="priority" placeholder="优先级" class="form-control">
+               </div>
+               <div class="form-group">
+                  <input type="text" name="link_to" placeholder="跳转链接" class="form-control">
+               </div>
             </div>
          </div>
+         <div class="progress banner-process-group">
+            <div class="progress-bar progress-bar-info progress-bar-striped banner-process" role="progressbar" aria-valuenow="20"
+                 aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+               20%
+            </div>
+         </div>
+         <div class="box-footer">
+            <button class="btn btn-primary btn-xs pull-right banner-save">保存</button>
+         </div>
       </div>
-   <div class="box-footer">
-      <button class="btn btn-primary btn-xs pull-right">保存</button>
-   </div>
-   </div>
    </script>
    {% endverbatim %}
 {% endblock %}

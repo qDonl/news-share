@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 # _*_ coding: utf-8 _*_
 from django import forms
+
 from apps.form import FormMixin
 from apps.news.models import News
+from .models import Banner
 
 
 class EditNewsCategoryForm(forms.Form, FormMixin):
@@ -30,5 +32,26 @@ class PublishNewsForm(forms.ModelForm, FormMixin):
             },
             'thumbnail': {
                 'required': "请插入新闻缩略图"
+            }
+        }
+
+
+class AddBannerForm(forms.ModelForm, FormMixin):
+    """添加轮播图表单验证"""
+    class Meta:
+        model = Banner
+        fields = ('image_url', 'link_to', 'priority')
+        error_messages = {
+            'image_url': {
+                'required': '请上传轮播图',
+                'invalid': "轮播图链接格式错误"
+            },
+            'link_to': {
+                'required': "请设置跳转链接",
+                'invalid': "请设置正确的跳转链接格式",
+            },
+            'priority': {
+                'required': "请设置轮播图优先级",
+                'invalid': "请设置正确格式的优先级(整形)"
             }
         }
