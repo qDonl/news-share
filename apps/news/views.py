@@ -8,6 +8,7 @@ from utils import restfuls
 from .forms import CommentForm
 from .models import Comment
 from .serializers import NewsSerializer, CommentSerializer
+from apps.cms.models import Banner
 
 
 def index(request):
@@ -16,9 +17,12 @@ def index(request):
 
     count = settings.ONE_PAGE_NEWS_COUNT
     newses = News.objects.prefetch_related('category', 'author').all()[0:count]
+
+    banners = Banner.objects.all()
     context = {
         'categories': categories,
-        'newses': newses
+        'newses': newses,
+        'banners': banners,
     }
     return render(request, 'news/index.html', context=context)
 
