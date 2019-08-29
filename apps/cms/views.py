@@ -10,7 +10,7 @@ from django.views.generic.base import View
 from apps.cms.forms import PublishNewsForm
 from apps.news.models import NewsCategory, News
 from utils import restfuls
-from .forms import EditNewsCategoryForm, AddBannerForm
+from .forms import EditNewsCategoryForm, AddBannerForm, EditBannerForm
 from .models import Banner
 from .serializers import BannerSerializer
 
@@ -120,6 +120,26 @@ def add_banner(request):
         banner = Banner.objects.create(priority=priority, image_url=image_url, link_to=link_to)
         return restfuls.success(data={"banner_id": banner.pk})
     return restfuls.bad_request(form.get_errors())
+
+
+@require_POST
+def edit_banner(request):
+    # 修改轮播图
+    form = EditBannerForm(request.POST)
+    if form.is_valid():
+        banner_id = form.cleaned_data.get('pk')
+        image_url = form.cleaned_data.get('image_url')
+        link_to = form.cleaned_data.get('link_to')
+        priority = form.cleaned_data.get('priority')
+        try:
+            Banner.objects.filter(pk=banner_id).update(image_url=image_url,
+                                                       link_to=link_to,
+                                                       priority=priority)
+            return restfuls.success()
+        except Banner.DoesNotExist:
+            return restfuls.bad_request(msg="当前轮播图已不存在")
+    return restfuls.bad_request(msg=form.get_errors())
+
 
 
 def remove_banner(request):

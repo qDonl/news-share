@@ -8,4 +8,4 @@ class Banner(models.Model):
     pub_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['priority', '-pub_time']
+        ordering = ['-priority', '-pub_time']

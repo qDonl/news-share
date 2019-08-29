@@ -17,6 +17,7 @@ urlpatterns = [
     path("upload/", views.upload_file, name='upload'),  # 弃用
     path("banner/", views.banner, name='banner'),
     path('banner/add/', views.add_banner, name="banner-add"),
+    path('banner/edit/', views.edit_banner, name="banner-edit"),
     path('banner/load/', views.load_banner, name='banner-load'),
     path("banner/remove/", views.remove_banner, name='banner-remove'),
     path('qntoken/', views.qntoken, name='qntoken'),

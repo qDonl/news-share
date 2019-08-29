@@ -55,3 +55,8 @@ class AddBannerForm(forms.ModelForm, FormMixin):
                 'invalid': "请设置正确格式的优先级(整形)"
             }
         }
+
+
+class EditBannerForm(AddBannerForm):
+    # 修改轮播图
+    pk = forms.IntegerField()
