@@ -101,13 +101,6 @@ class NewsListView(View):
         categories = NewsCategory.objects.all()
         newses = News.objects.select_related('author', 'category')
 
-        print(f"""
-        start: {start_time}
-        end: {end_time}
-        title: {title}
-        category: {category_id}:{type(category_id)}
-        """)
-
         # 按照新闻时间进行过滤
         if start_time or end_time:
             start_time = start_time[:10]
