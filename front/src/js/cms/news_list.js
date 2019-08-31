@@ -8,7 +8,7 @@ CMSNewsList.prototype.initPicker = function () {
     var endPicker = $("#end-picker");
 
     var todayDate = new Date();
-    var todayStr = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate();
+    var todayStr = todayDate.getFullYear() + '/' + (todayDate.getMonth() + 1) + '/' + todayDate.getDate();
     var options = {
         'showButtonPanel': true,  // 显示 "今日/清除" 按钮
         "format": "yyyy/mm/dd",  // 的定义中文式时间格式
@@ -26,8 +26,43 @@ CMSNewsList.prototype.initPicker = function () {
 };
 
 
+CMSNewsList.prototype.removeNewsEvent = function () {
+    var removeBtn = $("#news-remove");
+    removeBtn.click(function (event) {
+        event.preventDefault();
+        var item = $(this);
+        var newsId = item.attr('data-news');
+
+        swalert.alertConfirm({
+            title: "警告",
+            msg: "请再次确定要删除此篇文章",
+            confirmCallback: function () {
+                $.post({
+                    url: "/cms/news/remove/",
+                    data: {
+                        "news": newsId
+                    },
+                    success: function (result) {
+                        if (result['code'] == 200) {
+                            window.location.reload();
+                        } else {
+                            swalert.close();
+                            window.messageBox.showError(result['msg']);
+                        }
+                    },
+                    fail: function (error) {
+                        window.messageBox.showError(error)
+                    }
+                })
+            }
+        })
+    })
+};
+
+
 CMSNewsList.prototype.run = function () {
     this.initPicker();
+    this.removeNewsEvent();
 };
 
 $(function () {

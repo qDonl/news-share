@@ -116,7 +116,6 @@ PublishNews.prototype.handleFileUploadComplete = function (response) {
 
 };
 
-
 PublishNews.prototype.listenSubmitEvent = function (event) {
     var submitBtn = $("#submit-btn");
     submitBtn.click(function (event) {
@@ -126,6 +125,10 @@ PublishNews.prototype.listenSubmitEvent = function (event) {
         var desc = $("input[name=desc]").val();
         var category = $("select[name=category]").val();
         var content = window.ue.getContent();
+        var newsId = submitBtn.attr('data-news');
+        console.log('=========');
+        console.log(newsId);
+        console.log('=========');
         $.post({
             url: '/cms/news/publish/',
             data: {
@@ -133,18 +136,20 @@ PublishNews.prototype.listenSubmitEvent = function (event) {
                 desc: desc,
                 thumbnail: thumbnail,
                 category: category,
-                content: content
+                content: content,
+                "news_id": newsId,
             },
             success: function (data) {
                 if (data['code'] == 200) {
-                    swalert.alertSuccess("新闻发布成功", function () {
-                        window.location.reload();
+                    swalert.alertSuccess("编辑成功", function () {
+                        window.location = '/cms/news/publish/';
                     })
                 }else{
                     window.dataMessage.getMessage(data);
                 }
             },
             fail: function (error) {
+                console.log(error);
                 window.messageBox.showError(error)
             }
         })

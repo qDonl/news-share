@@ -1,14 +1,16 @@
-from datetime import datetime
 import os
+from datetime import datetime
+from urllib import parse
 
 import qiniu
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.utils.timezone import make_aware
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
-from django.utils.timezone import make_aware
-from urllib import parse
 
 from apps.cms.forms import PublishNewsForm
 from apps.news.models import NewsCategory, News
@@ -16,7 +18,6 @@ from utils import restfuls
 from .forms import EditNewsCategoryForm, AddBannerForm, EditBannerForm
 from .models import Banner
 from .serializers import BannerSerializer
-from django.core.paginator import Paginator
 
 
 @staff_member_required(login_url='index')
@@ -25,6 +26,8 @@ def index(request):
 
 
 class PublishNewsView(View):
+    """发布/编辑新闻"""
+
     def get(self, request):
         categories = NewsCategory.objects.all()
         context = {
@@ -41,9 +44,19 @@ class PublishNewsView(View):
             content = form.cleaned_data.get('content')
             cid = form.cleaned_data.get('category')
             category = NewsCategory.objects.get(pk=cid)
-            News.objects.create(title=title, desc=desc, thumbnail=thumbnail,
-                                content=content, category=category,
-                                author=request.user)
+
+            news_id = form.cleaned_data.get('news_id')
+            print('========= publish =========')
+            print(news_id)
+            print('========= publish =========')
+            News.objects.update_or_create(pk=news_id, defaults={
+                "title": title,
+                "desc": desc,
+                "thumbnail": thumbnail,
+                "content": content,
+                "category": category,
+                "author": request.user
+            })
             return restfuls.success()
         return restfuls.bad_request(msg=form.get_errors())
 
@@ -91,6 +104,7 @@ def delete_category_category(request):
 
 
 class NewsListView(View):
+    # 新闻列表
     def get(self, request):
         p = request.GET.get("p", 1)  # 获取当前是第几页
         start_time = request.GET.get('start', '')
@@ -130,7 +144,7 @@ class NewsListView(View):
         if category_id != 0:
             newses = newses.filter(category=category_id)
 
-        paginator = Paginator(newses, 1)  # 每页显示多少条数据
+        paginator = Paginator(newses, 6)  # 每页显示多少条数据
         page_obj = paginator.get_page(p)
         rt_pages = self.get_paginator_page(paginator, page_obj)
         context = {
@@ -182,6 +196,33 @@ class NewsListView(View):
             'paginator': paginator,
         }
         return rt_pages
+
+
+def edit_news(request):
+    news_id = request.GET.get("news")
+    try:
+        news = News.objects.get(pk=news_id)
+    except News.DoesNotExist:
+        return restfuls.bad_request(msg="该新闻已不存在")
+    categories = NewsCategory.objects.all()
+    context = {
+        "news": news,
+        'categories': categories,
+    }
+    return render(request, 'cms/publish_news.html', context=context)
+
+
+@require_POST
+def remove_news(request):
+    news_id = request.POST.get('news')
+    print('========= remove =========')
+    print(news_id)
+    print('========= remove =========')
+    try:
+        News.objects.get(pk=news_id).delete()
+        return restfuls.success()
+    except News.DoesNotExist:
+        return restfuls.bad_request(msg="该新闻已不存在")
 
 
 @require_POST

@@ -14,6 +14,7 @@ class EditNewsCategoryForm(forms.Form, FormMixin):
 
 class PublishNewsForm(forms.ModelForm, FormMixin):
     category = forms.IntegerField(error_messages={"required": "请选择新闻分类"})
+    news_id = forms.IntegerField(required=False)
 
     class Meta:
         model = News
