@@ -111,7 +111,7 @@ PublishNews.prototype.handleFileUploadComplete = function (response) {
 
     var thumbnailFormEle = $("#form-thumbnail");
     thumbnailFormEle.val(link);
-    thumbnailFormEle.attr({"disabled": true});
+    thumbnailFormEle.attr({"readonly": true});
     window.messageBox.showSuccess("添加成功");
 
 };

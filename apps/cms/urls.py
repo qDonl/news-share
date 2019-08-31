@@ -14,6 +14,7 @@ urlpatterns = [
     path("news/category/add/", views.add_news_category, name='add-news-category'),
     path("news/category/edit/", views.edit_news_category, name='edit-news-category'),
     path("news/category/delete/", views.delete_category_category, name='delete-news-category'),
+    path("news/list/", views.NewsListView.as_view(), name='news-list'),
     path("upload/", views.upload_file, name='upload'),  # 弃用
     path("banner/", views.banner, name='banner'),
     path('banner/add/', views.add_banner, name="banner-add"),

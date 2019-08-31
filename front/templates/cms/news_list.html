@@ -1,0 +1,180 @@
+{% extends 'cms/base.html' %}
+{% load news_filter %}
+
+
+{% block title %}
+   新闻管理
+{% endblock %}
+
+{% block head %}
+   <style>
+      .left-group {
+         margin-left: 30px;
+      }
+   </style>
+   <link rel="stylesheet" href="{% static 'adminlte/bower_components/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}">
+   <script src="{% static 'adminlte/bower_components/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js' %}"></script>
+{% endblock %}
+
+
+{% block content_header %}
+   新闻管理
+{% endblock %}
+
+{% block content %}
+   <div class="row">
+      <div class="col md-12">
+         <div class="box">
+            <div class="header">
+               <form action="" class="form-inline" style="margin: 7px 20px;">
+                  <div class="form-group left-group">
+                     <label>时间:</label>
+                     <div class="input-group date">
+                        <div class="input-group-addon">
+                           <i class="fa fa-calendar"></i>
+                        </div>
+                        {% if start %}
+                           <input type="text" class="form-control" name="start" value="{{ start }}" id="start-picker"
+                                  placeholder="起始时间">
+                        {% else %}
+                           <input type="text" class="form-control" name="start" id="start-picker" placeholder="起始时间">
+                        {% endif %}
+                     </div>
+                     <span>--</span>
+                     <div class="input-group date">
+                        <div class="input-group-addon">
+                           <i class="fa fa-calendar"></i>
+                        </div>
+                        {% if end %}
+                           <input type="text" class="form-control" name="end" id="end-picker" value="{{ end }}"
+                                  placeholder="结束时间">
+                        {% else %}
+                           <input type="text" class="form-control" name="end" id="end-picker" placeholder="结束时间">
+                        {% endif %}
+                     </div>
+                  </div>
+                  <div class="form-group left-group">
+                     <label>标题:</label>
+                     {% if title %}
+                        <input type="text" placeholder="关键字" name="title" value="{{ title }}" class="form-control">
+                     {% else %}
+                        <input type="text" placeholder="关键字" name="title" class="form-control">
+                     {% endif %}
+                  </div>
+                  <div class="form-group left-group">
+                     <label>分类</label>
+                     <select name="category" class="form-control">
+                        {% if category_id == 0 %}
+                           <option value="0" selected>所有分类</option>
+                        {% else %}
+                           <option value="0">所有分类</option>
+                        {% endif %}
+
+                        {% for category in categories %}
+                           {% if category_id == category.pk %}
+                              <option value="{{ category.pk }}" selected>{{ category.name }}</option>
+                           {% else %}
+                              <option value="{{ category.pk }}">{{ category.name }}</option>
+                           {% endif %}
+                        {% endfor %}
+                     </select>
+                  </div>
+                  <div class="form-group left-group">
+                     <button class="btn btn-primary">查询</button>
+                  </div>
+                  <div class="form-group left-group">
+                     <a class="btn btn-link" href="?p=1">清除条件</a>
+                  </div>
+               </form>
+            </div>
+            <div class="body">
+               <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                     <td>标题</td>
+                     <td>分类</td>
+                     <td>时间</td>
+                     <td>作者</td>
+                     <td>操作</td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for news in newses %}
+                     <tr>
+                        <td><a target="_blank" href="{% url 'detail' news.pk %}">{{ news.title }}</a></td>
+                        <td>{{ news.category.name }}</td>
+                        <td>{{ news.pub_time|date:"Y/m/d H:i:s" }}</td>
+                        <td>{{ news.author.username }}</td>
+                        <td>
+                           <button class="btn btn-info btn-xs">编辑</button>
+                           <button class="btn btn-danger btn-xs">删除</button>
+                        </td>
+                     </tr>
+                  {% endfor %}
+                  </tbody>
+               </table>
+            </div>
+            <div class="footer" style="overflow: hidden;">
+               <p class="pull-left" style="margin-left: 20px">第{{ current_page }}页/共{{ num_pages }}页</p>
+               <nav aria-label="Page navigation" class="pull-right">
+                  <ul class="pagination">
+
+                     {#   上一页#}
+                     {% if not page_obj.has_previous %}
+                        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">上一页</span></a>
+                        </li>
+                     {% else %}
+                        <li>
+                           <a href="?p={{ page_obj.previous_page_number }}{{ url_query }}" aria-label="Previous">
+                              <span aria-hidden="true">上一页</span>
+                           </a>
+                        </li>
+                     {% endif %}
+
+                     {% if left_has_more %}
+                        <li><a href="?p=1{{ url_query }}">1</a></li>
+                        <li><a href="javascript: void(0)">...</a></li>
+                     {% endif %}
+
+                     {#   列表页#}
+                     {#   左列表页#}
+                     {% for left_page in left_pages %}
+                        <li><a href="?p={{ left_page }}{{ url_query }}">{{ left_page }}</a></li>
+                     {% endfor %}
+                     {#   当前页#}
+                     <li class="active"><a href="?p={{ current_page }}{{ url_query }}">{{ current_page }}</a></li>
+                     {#   右列表页#}
+                     {% for right_page in right_pages %}
+                        <li><a href="?p={{ right_page }}{{ url_query }}">{{ right_page }}</a></li>
+                     {% endfor %}
+
+                     {% if right_has_more %}
+                        <li><a href="javascript: void(0)">...</a></li>
+                        <li>
+                           <a href="?p={{ paginator.num_pages }}{{ url_query }}">{{ paginator.num_pages }}</a>
+                        </li>
+                     {% endif %}
+
+                     {#   下一页#}
+                     {% if not page_obj.has_next %}
+                        <li class="disabled"><a href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+                     {% else %}
+                        <li>
+                           <a href="?p={{ page_obj.next_page_number }}{{ url_query }}" aria-label="Next">
+                              <span aria-hidden="true">下一页</span>
+                           </a>
+                        </li>
+                     {% endif %}
+                  </ul>
+               </nav>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}
+
+
+{% block bottom-head %}
+   <script src="{% static 'adminlte/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+   <script src="{% static 'js/cms/news_list.min.js' %}"></script>
+{% endblock %}

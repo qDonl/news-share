@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 import qiniu
@@ -6,6 +7,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
+from django.utils.timezone import make_aware
+from urllib import parse
 
 from apps.cms.forms import PublishNewsForm
 from apps.news.models import NewsCategory, News
@@ -13,6 +16,7 @@ from utils import restfuls
 from .forms import EditNewsCategoryForm, AddBannerForm, EditBannerForm
 from .models import Banner
 from .serializers import BannerSerializer
+from django.core.paginator import Paginator
 
 
 @staff_member_required(login_url='index')
@@ -86,6 +90,107 @@ def delete_category_category(request):
     return restfuls.bad_request(msg="当前分类已不存在")
 
 
+class NewsListView(View):
+    def get(self, request):
+        p = request.GET.get("p", 1)  # 获取当前是第几页
+        start_time = request.GET.get('start', '')
+        end_time = request.GET.get('end', '')
+        title = request.GET.get("title", '')
+        category_id = int(request.GET.get("category", 0))
+
+        categories = NewsCategory.objects.all()
+        newses = News.objects.select_related('author', 'category')
+
+        print(f"""
+        start: {start_time}
+        end: {end_time}
+        title: {title}
+        category: {category_id}:{type(category_id)}
+        """)
+
+        # 按照新闻时间进行过滤
+        if start_time or end_time:
+            start_time = start_time[:10]
+            end_time = end_time[:10]
+            if start_time:
+                try:
+                    start_time = datetime.strptime(start_time, '%Y/%m/%d')
+                except ValueError:
+                    start_time = datetime.strptime(start_time, '%Y-%m-%d')
+            else:
+                start_time = datetime(year=2019, month=6, day=1)
+
+            if end_time:
+                try:
+                    end_time = datetime.strptime(end_time, '%Y/%m/%d')
+                except ValueError:
+                    end_time = datetime.strptime(end_time, '%Y-%m-%d')
+            else:
+                end_time = datetime.today()
+            newses = newses.filter(pub_time__range=(make_aware(start_time), make_aware(end_time)))
+
+        # 按照标题进行过滤
+        if title:
+            newses = newses.filter(title__icontains=title)
+
+        # 按照分类进行过滤
+        if category_id != 0:
+            newses = newses.filter(category=category_id)
+
+        paginator = Paginator(newses, 1)  # 每页显示多少条数据
+        page_obj = paginator.get_page(p)
+        rt_pages = self.get_paginator_page(paginator, page_obj)
+        context = {
+            'newses': page_obj.object_list,
+            "categories": categories,
+            'url_query': "&" + parse.urlencode({
+                'start': start_time,
+                'end': end_time,
+                'title': title,
+                'category': category_id or 0,
+            }),
+            'start': start_time,
+            'end': end_time,
+            'title': title,
+            'category_id': category_id or 0,
+        }
+        context.update(**rt_pages)
+        return render(request, 'cms/news_list.html', context=context)
+
+    def get_paginator_page(self, paginator, page_obj, around_num=2):
+        current_page = page_obj.number
+        num_pages = paginator.num_pages
+
+        left_has_more = False
+        right_has_more = False
+
+        # current_page=around_num+2时, (1, current_page)
+        if current_page <= around_num + 2:
+            left_pages = range(1, current_page)
+        else:
+            left_has_more = True
+            left_pages = range(current_page - around_num, current_page)  # 左列表页
+
+        # current_page=num_page-around_num-1时就要(current_page, num_pages)
+        if current_page >= num_pages - around_num - 1:
+            right_pages = range(current_page + 1, num_pages + 1)
+        else:
+            right_has_more = True
+            right_pages = range(current_page + 1, current_page + around_num + 1)  # 右列表页
+
+        rt_pages = {
+            'current_page': current_page,
+            "left_pages": left_pages,
+            'right_pages': right_pages,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+            "num_pages": num_pages,
+            "page_obj": page_obj,
+            'paginator': paginator,
+        }
+        return rt_pages
+
+
 @require_POST
 def upload_file(request):
     file = request.FILES.get('file')
@@ -139,7 +244,6 @@ def edit_banner(request):
         except Banner.DoesNotExist:
             return restfuls.bad_request(msg="当前轮播图已不存在")
     return restfuls.bad_request(msg=form.get_errors())
-
 
 
 def remove_banner(request):
