@@ -19,7 +19,7 @@
 
       <ul class="nav">
          <li class="active"><a href="/">创业资讯</a></li>
-         <li><a href="{% url 'course:index' %}">创业课堂</a></li>
+         <li><a href="{% url 'course:course-index' %}">创业课堂</a></li>
          <li><a href="{% url 'payinfo:index' %}">付费资讯</a></li>
          <li><a href="{% url 'search' %}">搜索</a></li>
       </ul>
@@ -138,11 +138,10 @@
                   <ul class="social-group">
                      <li class="weixin">
                         <div class="wx-qrcode"></div>
-                        <span class="text">xfz008
-                                    </span>
+                        <span class="text">xfz008</span>
                      </li>
                      <li class="weibo">
-                        <a class="text" href="#">小饭桌创业课堂</a>
+                        <a class="text" href="{% url 'course:course-index' %}">小饭桌创业课堂</a>
                      </li>
                   </ul>
                </div>

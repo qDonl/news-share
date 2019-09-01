@@ -186,3 +186,7 @@ DEBUG_TOOLBAR_PANELS = [
     # 缓存信息
     'debug_toolbar.panels.cache.CachePanel',
 ]
+
+# 百度云视频播放设置
+BAIDU_CLOUD_USER_ID = 'ced6652de7ae417f807cb73bf7a50abb'
+BAIDU_CLOUD_USER_KEY = "e40d33ebbade4b4a"

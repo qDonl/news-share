@@ -6,8 +6,7 @@ import qiniu
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import make_aware
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
@@ -15,9 +14,15 @@ from django.views.generic.base import View
 from apps.cms.forms import PublishNewsForm
 from apps.news.models import NewsCategory, News
 from utils import restfuls
-from .forms import EditNewsCategoryForm, AddBannerForm, EditBannerForm
+from .forms import (
+    EditNewsCategoryForm,
+    AddBannerForm,
+    EditBannerForm,
+    PublishCourseForm
+)
 from .models import Banner
 from .serializers import BannerSerializer
+from apps.course.models import Course, CourseCategory, Teacher
 
 
 @staff_member_required(login_url='index')
@@ -46,9 +51,6 @@ class PublishNewsView(View):
             category = NewsCategory.objects.get(pk=cid)
 
             news_id = form.cleaned_data.get('news_id')
-            print('========= publish =========')
-            print(news_id)
-            print('========= publish =========')
             News.objects.update_or_create(pk=news_id, defaults={
                 "title": title,
                 "desc": desc,
@@ -215,9 +217,6 @@ def edit_news(request):
 @require_POST
 def remove_news(request):
     news_id = request.POST.get('news')
-    print('========= remove =========')
-    print(news_id)
-    print('========= remove =========')
     try:
         News.objects.get(pk=news_id).delete()
         return restfuls.success()
@@ -225,17 +224,7 @@ def remove_news(request):
         return restfuls.bad_request(msg="该新闻已不存在")
 
 
-@require_POST
-def upload_file(request):
-    file = request.FILES.get('file')
-    name = file.name
-    with open(os.path.join(settings.MEDIA_ROOT, name), 'wb') as fp:
-        for chunk in file.chunks():
-            fp.write(chunk)
-    url = request.build_absolute_uri(settings.MEDIA_URL + name)
-    return restfuls.success(data={'url': url})
-
-
+# 轮播图管理
 def banner(request):
     # 管理轮播图
     return render(request, 'cms/banner.html')
@@ -287,7 +276,43 @@ def remove_banner(request):
     return restfuls.success()
 
 
+# 课程管理
+class PublishCourseView(View):
+    def get(self, request):
+        categories = CourseCategory.objects.all()
+        teachers = Teacher.objects.all()
+        context = {
+            "categories": categories,
+            "teachers": teachers
+        }
+        return render(request, 'cms/publish_course.html', context)
+
+    def post(self, request):
+        form = PublishCourseForm(request.POST)
+        if form.is_valid():
+            # name = form.cleaned_data.get("name")
+            # category_id = form.cleaned_data.get("category_id")
+            # teacher_id = form.cleaned_data.get("teacher_id")
+            # video_link = form.cleaned_data.get("video_link")
+            # cover_link = form.cleaned_data.get("cover_link")
+            # price = form.cleaned_data.get("price")
+            # duration = form.cleaned_data.get("duration")
+            #
+            # Course.objects.create(name=name, category_id=category_id,
+            #                       teacher_id=teacher_id, video_link=video_link,
+            #                       cover_link=cover_link, price=price,
+            #                       duration=duration)
+            for k, v in form.cleaned_data.items():
+                print(f"{k}: {v}")
+            course = Course()
+            course.set_attr(form.cleaned_data)
+            course.save()
+            return restfuls.success()
+        return restfuls.bad_request(form.get_errors())
+
+
 def qntoken(request):
+    # 获取七牛云 token
     access_key = settings.QINIU_ACCESS_KEY
     secret_key = settings.QINIU_SECRET_KEY
     q = qiniu.Auth(access_key, secret_key)
@@ -295,3 +320,15 @@ def qntoken(request):
     bucket = settings.QINIU_BUCKET
     token = q.upload_token(bucket)
     return restfuls.result(token=token)
+
+
+@require_POST
+def upload_file(request):
+    # 上传文件到本地
+    file = request.FILES.get('file')
+    name = file.name
+    with open(os.path.join(settings.MEDIA_ROOT, name), 'wb') as fp:
+        for chunk in file.chunks():
+            fp.write(chunk)
+    url = request.build_absolute_uri(settings.MEDIA_URL + name)
+    return restfuls.success(data={'url': url})

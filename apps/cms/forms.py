@@ -2,6 +2,7 @@
 # _*_ coding: utf-8 _*_
 from django import forms
 
+from apps.course.models import Course
 from apps.form import FormMixin
 from apps.news.models import News
 from .models import Banner
@@ -39,6 +40,7 @@ class PublishNewsForm(forms.ModelForm, FormMixin):
 
 class AddBannerForm(forms.ModelForm, FormMixin):
     """添加轮播图表单验证"""
+
     class Meta:
         model = Banner
         fields = ('image_url', 'link_to', 'priority')
@@ -61,3 +63,23 @@ class AddBannerForm(forms.ModelForm, FormMixin):
 class EditBannerForm(AddBannerForm):
     # 修改轮播图
     pk = forms.IntegerField()
+
+
+class PublishCourseForm(forms.ModelForm, FormMixin):
+    """发布课程"""
+    category_id = forms.IntegerField()
+    teacher_id = forms.IntegerField()
+
+    class Meta:
+        model = Course
+        exclude = ('pub_time', 'teacher', 'category')
+        error_messages = {
+            "name": {"required": "请输入课程标题"},
+            "category_id": {'required': "请选择课程分类"},
+            'teacher_id': {"required": "请选择讲师"},
+            "video_link": {"required": "请上传授课视频", 'invalid': "请输入有效的视频连接"},
+            'cover_link': {"required": "请上传课程封面", 'invalid': "请输入有效的封面连接"},
+            'price': {'required': "请标注价格"},
+            'duration': {"required": "请添加课程时长"},
+            'desc': {"required": "请添加描述信息"}
+        }
