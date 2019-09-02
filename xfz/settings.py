@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
 
     'apps.news',
     'apps.cms',
@@ -190,3 +191,16 @@ DEBUG_TOOLBAR_PANELS = [
 # 百度云视频播放设置
 BAIDU_CLOUD_USER_ID = 'ced6652de7ae417f807cb73bf7a50abb'
 BAIDU_CLOUD_USER_KEY = "e40d33ebbade4b4a"
+
+
+# 配置搜索引擎 haystack
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'apps.news.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+
+# 自动更新索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

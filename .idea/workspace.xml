@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b7645591-c1b3-47b9-9fe3-10fe0c6340ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cms/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cms/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cms/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cms/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/cms/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/cms/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/course/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/course/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/course/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/course/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/news/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/news/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/templates/base/front_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates/base/front_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/templates/cms/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates/cms/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/templates/course/course_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates/course/course_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/templates/course/course_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates/course/course_index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/templates/search/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/front/templates/search/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xfz/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/xfz/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xfz/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/xfz/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,45 +27,70 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/course/views.py">
+        <entry file="file://$PROJECT_DIR$/apps/news/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+            <state relative-caret-position="201">
+              <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
               <folding>
-                <element signature="e#43#57#0" expanded="true" />
-                <element signature="e#144#194#0" expanded="true" />
-                <element signature="e#359#410#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front/templates/course/course_detail.html">
+        <entry file="file://$PROJECT_DIR$/apps/payinfo/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+            <state relative-caret-position="168">
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/front/templates/course/course_order.html">
+        <entry file="file://$PROJECT_DIR$/apps/news/search_indexes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="35" column="46" lean-forward="true" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+            <state relative-caret-position="105">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
-                <element signature="e#5792#5812#0#HTML" expanded="true" />
+                <element signature="e#43#71#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/course/urls.py">
+        <entry file="file://$PROJECT_DIR$/front/templates/search/search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="203">
+              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xfz/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="205" column="53" lean-forward="true" selection-start-line="205" selection-start-column="53" selection-end-line="205" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front/templates/base/front_base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xfz/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -81,8 +101,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -111,6 +131,10 @@
       <find>select</find>
       <find>about</find>
       <find>course.title</find>
+      <find>fields</find>
+      <find>schema_fields</find>
+      <find>schema_fields[field_class.index_fieldname] =</find>
+      <find>search</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -122,12 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/apps/news/templatetags/news_filter.py" />
-        <option value="$PROJECT_DIR$/front/templates/404.html" />
-        <option value="$PROJECT_DIR$/xfz/urls.py" />
-        <option value="$PROJECT_DIR$/apps/news/serializers.py" />
-        <option value="$PROJECT_DIR$/apps/news/urls.py" />
-        <option value="$PROJECT_DIR$/front/src/js/front_base.js" />
         <option value="$PROJECT_DIR$/apps/xfzauth/serializers.py" />
         <option value="$PROJECT_DIR$/apps/news/models.py" />
         <option value="$PROJECT_DIR$/apps/xfzauth/decorators.py" />
@@ -143,7 +161,6 @@
         <option value="$PROJECT_DIR$/apps/cms/models.py" />
         <option value="$PROJECT_DIR$/front/templates/cms/banner.html" />
         <option value="$PROJECT_DIR$/front/src/js/cms/banner.js" />
-        <option value="$PROJECT_DIR$/apps/news/views.py" />
         <option value="$PROJECT_DIR$/front/templates/news/index.html" />
         <option value="$PROJECT_DIR$/front/src/js/index.js" />
         <option value="$PROJECT_DIR$/utils/set_paginator.py" />
@@ -163,9 +180,7 @@
         <option value="$PROJECT_DIR$/front/src/js/cms/publish_course.js" />
         <option value="$PROJECT_DIR$/front/templates/course/course_index.html" />
         <option value="$PROJECT_DIR$/apps/course/models.py" />
-        <option value="$PROJECT_DIR$/front/templates/base/front_base.html" />
         <option value="$PROJECT_DIR$/front/src/css/common/footer.scss" />
-        <option value="$PROJECT_DIR$/xfz/settings.py" />
         <option value="$PROJECT_DIR$/front/src/js/course_detail.js" />
         <option value="$PROJECT_DIR$/front/src/css/course/course_order.scss" />
         <option value="$PROJECT_DIR$/front/src/js/course_order.js" />
@@ -173,13 +188,22 @@
         <option value="$PROJECT_DIR$/front/templates/course/course_detail.html" />
         <option value="$PROJECT_DIR$/apps/course/views.py" />
         <option value="$PROJECT_DIR$/front/templates/course/course_order.html" />
+        <option value="$PROJECT_DIR$/apps/news/views.py" />
+        <option value="$PROJECT_DIR$/apps/news/search_indexs.py" />
+        <option value="$PROJECT_DIR$/apps/news/search_indexes.py" />
+        <option value="$PROJECT_DIR$/front/templates/search/indexes/news/news_text.txt" />
+        <option value="$PROJECT_DIR$/apps/news/whoosh_cn_backend.py" />
+        <option value="$PROJECT_DIR$/xfz/settings.py" />
+        <option value="$PROJECT_DIR$/xfz/urls.py" />
+        <option value="$PROJECT_DIR$/front/templates/base/front_base.html" />
+        <option value="$PROJECT_DIR$/front/templates/search/search.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="867" />
-    <option name="y" value="47" />
-    <option name="width" value="1013" />
+    <option name="x" value="681" />
+    <option name="y" value="42" />
+    <option name="width" value="1014" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -190,84 +214,15 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="course" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xfz_front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xfz_front" type="462c0819:PsiDirectoryNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="course" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/front/templates/course" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/news" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -275,16 +230,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\code\python\project\Django\xfz_front\apps" />
-      <recent name="E:\code\python\project\Django\xfz_front" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\code\python\project\Django\xfz_front\apps\news" />
       <recent name="E:\code\python\project\Django\xfz_front\front\templates\course" />
       <recent name="E:\code\python\project\Django\xfz_front\front\dist\js\videojs" />
       <recent name="E:\code\python\project\Django\xfz_front\front\dist\imgs" />
       <recent name="E:\code\python\project\Django\xfz_front\front\dist\js" />
-      <recent name="E:\code\python\project\Django\xfz_front\utils" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\code\python\project\Django\xfz_front\apps" />
+      <recent name="E:\code\python\project\Django\xfz_front" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -345,24 +300,25 @@
       <workItem from="1566797822234" duration="37659000" />
       <workItem from="1566979190769" duration="11306000" />
       <workItem from="1566995985373" duration="27507000" />
-      <workItem from="1567232256435" duration="35205000" />
+      <workItem from="1567232256435" duration="37398000" />
+      <workItem from="1567386953687" duration="10436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263179000" />
+    <option name="totallyTimeSpent" value="275808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="23" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49928468" visible="true" weight="0.2590848" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49928468" visible="true" weight="0.17833109" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.27119786" />
       <window_info id="Favorites" order="2" sideWeight="0.5007153" side_tool="true" weight="0.25100943" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="0" show_stripe_button="false" weight="0.32904148" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32904148" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.40915594" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.3319027" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.45064378" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -411,120 +367,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front/src/css/cms/banner.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/cms/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#43#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/news/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="19" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="e#43#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/js/cms/banner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!block;n#Banner#0" expanded="true" />
-            <element signature="e#71#711#0" expanded="true" />
-            <element signature="e#244#708#0" expanded="true" />
-            <element signature="e#1041#2384#0" expanded="true" />
-            <element signature="e#1166#2263#0" expanded="true" />
-            <element signature="e#3581#4611#0" expanded="true" />
-            <element signature="e#3664#4608#0" expanded="true" />
-            <element signature="e#4108#4452#0" expanded="true" />
-            <element signature="e#4677#4818#0" expanded="true" />
-            <element signature="e#5260#6338#0" expanded="true" />
-            <element signature="e#5522#5562#0" expanded="true" />
-            <element signature="e#5763#6105#0" expanded="true" />
-            <element signature="e#6156#6247#0" expanded="true" />
-            <element signature="e#4856#4886#0" expanded="true" />
-            <element signature="e#4903#4955#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/js/news_detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="36" column="38" lean-forward="true" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/set_page.py" />
-    <entry file="file://$PROJECT_DIR$/apps/news/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="n#!!block;n#News#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python_Env/Envs/django-env/Lib/site-packages/django/utils/timezone.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/js/ajaxSetup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front/src/js/swalert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="64" column="14" lean-forward="true" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!block;n#alertError#0;n#alertError#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertInfo#0;n#alertInfo#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertInfoWithTitle#0;n#alertInfoWithTitle#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertSuccess#0;n#alertSuccess#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertSuccessWithTitle#0;n#alertSuccessWithTitle#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="e#1838#2135#0" expanded="true" />
-            <element signature="n#!!block;n#alertOneInput#0;n#alertOneInput#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="e#3094#3396#0" expanded="true" />
-            <element signature="n#!!block;n#alertNetworkError#0;n#alertNetworkError#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertInfoToast#0;n#alertInfoToast#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertErrorToast#0;n#alertErrorToast#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertSuccessToast#0;n#alertSuccessToast#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#alertToast#0;n#alertToast#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-            <element signature="n#!!block;n#close#0;n#close#0;n#!!block;n#swalert#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/templates/cms/news_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -540,16 +382,6 @@
             <element signature="e#1348#1396#0" expanded="true" />
             <element signature="e#1698#1746#0" expanded="true" />
             <element signature="e#824#850#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/news/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -582,16 +414,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" lean-forward="true" selection-start-column="3" selection-end-column="3" />
-          <folding>
-            <element signature="e#154#267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py" />
     <entry file="file://$PROJECT_DIR$/front/src/js/cms/publish_news.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -744,18 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/templates/base/front_base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="124" column="25" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
-          <folding>
-            <element signature="n#header#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#footer#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/templates/common/siderbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -793,13 +604,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/xfz/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="191" column="40" selection-start-line="191" selection-start-column="40" selection-end-line="191" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front/dist/js/videojs/cyberplayer.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -833,17 +637,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/front/templates/course/course_order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding>
+            <element signature="e#5792#5812#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/front/templates/course/course_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="36" column="21" lean-forward="true" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/course/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -859,12 +666,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front/templates/course/course_order.html">
+    <entry file="file://$PROJECT_DIR$/apps/course/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="35" column="46" lean-forward="true" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+        <state relative-caret-position="147">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/payinfo/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/templates/payinfo/payinfo.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/news/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="84" column="7" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
           <folding>
-            <element signature="e#5792#5812#0#HTML" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/news/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python_Env/Envs/django-env/Lib/site-packages/haystack/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python_Env/Envs/django-env/Lib/site-packages/haystack/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/news/whoosh_cn_backend.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="162" column="17" selection-start-line="162" selection-start-column="17" selection-end-line="162" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xfz/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="205" column="53" lean-forward="true" selection-start-line="205" selection-start-column="53" selection-end-line="205" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/templates/search/indexes/news/news_text.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xfz/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/templates/base/front_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front/templates/search/search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/payinfo/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/news/search_indexes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#43#71#0" expanded="true" />
           </folding>
         </state>
       </provider>

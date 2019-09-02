@@ -21,7 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('search/', views.news_search, name='search'),
+    path('search/', include('haystack.urls')),
     path('news/', include('apps.news.urls')),
     path('course/', include('apps.course.urls')),
     path('pay/', include('apps.payinfo.urls')),

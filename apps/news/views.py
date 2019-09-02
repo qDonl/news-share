@@ -9,6 +9,7 @@ from .forms import CommentForm
 from .models import Comment
 from .serializers import NewsSerializer, CommentSerializer
 from apps.cms.models import Banner
+from django.db.models import Q
 
 
 def index(request):
@@ -75,4 +76,13 @@ def publish_comment(request):
 
 
 def news_search(request):
-    return render(request, 'search/search.html')
+    q = request.GET.get("q")
+    context = {}
+    if q:
+        newses = News.objects.select_related('category', 'author') \
+            .filter(Q(title__icontains=q) | Q(content__icontains=q))
+        context = {
+            "q": q,
+            'newses': newses
+        }
+    return render(request, 'search/search.html', context)
