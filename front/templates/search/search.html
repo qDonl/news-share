@@ -1,5 +1,6 @@
 {% extends 'base/front_base.html' %}
 {% load news_filter %}
+{% load my_filter_and_tags %}
 
 {% block title %}
    搜索
@@ -33,10 +34,10 @@
                            </div>
                            <div class="news-group">
                               <p class="title">
-                                 <a href="{% url 'detail' news.pk %}">{{ news.title }}</a>
+                                 <a href="{% url 'detail' news.pk %}">{% myhighlight news.title with query %}</a>
                               </p>
                               <p class="desc">
-                                 {{ news.desc }}
+                                 {% myhighlight news.desc with query %}
                               </p>
                               <p class="more">
                                  <span class="category">{{ news.category.name }}</span>

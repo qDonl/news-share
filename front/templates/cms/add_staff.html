@@ -1,0 +1,40 @@
+{% extends 'cms/base.html' %}
+
+
+{% block title %}
+   添加员工
+{% endblock %}
+
+
+{% block content_header %}
+   添加员工
+{% endblock %}
+
+
+{% block content %}
+   <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+         <div class="box box-primary">
+            <div class="box-body">
+               <form action="" method="post">
+                  {% csrf_token %}
+                  <div class="form-group">
+                     <label for="staff-tel">手机号码:</label>
+                     <input type="text" id="staff-tel" name="telephone" class="form-control" placeholder="员工手机号码">
+                  </div>
+                  <div class="checkbox">
+                     {% for group in groups %}
+                        <label style="margin-right: 14px">
+                           <input name="group" type="checkbox" value="{{ group.pk }}">{{ group.name }}
+                        </label>
+                     {% endfor %}
+                  </div>
+                  <div class="form-group">
+                     <button class="btn btn-primary pull-right">确认添加</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+{% endblock %}

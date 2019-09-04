@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # _*_ coding: utf-8 _*_
 
-from . import views
+from . import views, staff_view
 from django.urls import path
 
 app_name = 'cms'
@@ -27,8 +27,15 @@ urlpatterns = [
     path("upload/", views.upload_file, name='upload'),  # 上传文件到本地
 ]
 
-
 # 课程管理
 urlpatterns += [
     path('course/publish/', views.PublishCourseView.as_view(), name='course-publish'),
+]
+
+# 员工管理
+urlpatterns += [
+    path("staff/", staff_view.staff_operate, name='staff-operate'),
+    path('staff/add/', staff_view.AddStaffView.as_view(), name="staff-add"),
+    path("staff/remove/", staff_view.remove_staff, name='staff-remove'),
+    path("staff/update/", staff_view.update_staff, name='staff-update'),
 ]

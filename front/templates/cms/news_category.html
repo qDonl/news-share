@@ -35,7 +35,7 @@
                   {% for category in categories %}
                      <tr data-pk="{{ category.pk }}" data-name="{{ category.name }}">
                         <td>{{ category.name }}</td>
-                        <td>50</td>
+                        <td>{{ category.news_set.count|default:0 }}</td>
                         <td>
                            <button class="btn-xs btn-warning edit-btn">编辑</button>
                            <button class="btn-xs btn-danger delete-btn">删除</button>

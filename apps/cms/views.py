@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
 
 from apps.cms.forms import PublishNewsForm
+from apps.course.models import Course, CourseCategory, Teacher
 from apps.news.models import NewsCategory, News
 from utils import restfuls
 from .forms import (
@@ -22,7 +23,6 @@ from .forms import (
 )
 from .models import Banner
 from .serializers import BannerSerializer
-from apps.course.models import Course, CourseCategory, Teacher
 
 
 @staff_member_required(login_url='index')
@@ -50,8 +50,8 @@ class PublishNewsView(View):
             cid = form.cleaned_data.get('category')
             category = NewsCategory.objects.get(pk=cid)
 
-            news_id = form.cleaned_data.get('news_id')
-            News.objects.update_or_create(pk=news_id, defaults={
+            news_id = form.cleaned_data.get('news_id') or None
+            News.objects.update_or_create(id=news_id, defaults={
                 "title": title,
                 "desc": desc,
                 "thumbnail": thumbnail,
