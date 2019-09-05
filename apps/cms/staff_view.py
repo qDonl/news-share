@@ -26,6 +26,8 @@ def staff_operate(request):
 
 @method_decorator(auth_superuser_required, name='dispatch')
 class AddStaffView(View):
+    """添加员工"""
+
     def get(self, request):
         groups = Group.objects.all()
         context = {
@@ -34,7 +36,7 @@ class AddStaffView(View):
         return render(request, 'cms/add_staff.html', context)
 
     def post(self, request):
-        group_ids = request.POST.getlist('group[]', [])
+        group_ids = request.POST.getlist('group[]', [])  # 通过ajax 获取的group key值为 "group[]"? 待解决原因
         if group_ids is None:
             return restfuls.bad_request('请选择员工分组')
 
@@ -49,17 +51,54 @@ class AddStaffView(View):
                 user.save()
                 return restfuls.success()
             except User.DoesNotExist:
-                # messages.error(request, '请用户先完成注册')
-                # return redirect(reverse('cms:staff-add'))
                 return restfuls.bad_request("请用户先完成注册")
-        # messages.error(request, message=form.get_errors())
-        # return redirect(reverse('cms:staff-add'))
         return restfuls.bad_request(form.get_errors())
 
 
+@auth_superuser_required
 def remove_staff(request):
-    return restfuls.success()
+    """移除员工"""
+    uid = request.GET.get("uid")
+    try:
+        u = User.objects.get(pk=uid)
+        u.is_staff = False
+        u.groups.remove(*list(u.groups.all()))
+        u.save()
+        return restfuls.success()
+    except User.DoesNotExist:
+        return restfuls.bad_request('该用户已不存在')
 
 
-def update_staff(request):
-    return restfuls.success()
+@method_decorator(auth_superuser_required, name='dispatch')
+class UpdateStaffView(View):
+    """编辑用户所属组"""
+
+    def get(self, request):
+        arg = request.GET.get("staff")
+        try:
+            staff = User.objects.get(pk=arg)
+            groups = Group.objects.all()
+            staff_groups = list(staff.groups.all())
+            context = {
+                "staff": staff,
+                'groups': groups,
+                'staff_groups': staff_groups
+            }
+            return render(request, 'cms/add_staff.html', context)
+        except User.DoesNotExist:
+            return restfuls.bad_request('该用户已不存在')
+
+    def post(self, request):
+        telephone = request.POST.get("telephone")
+        group_ids = request.POST.getlist('group[]', [])
+        if group_ids is None:
+            return restfuls.bad_request('请选择用户分组')
+        try:
+            u = User.objects.get(telephone=telephone)
+            u.groups.remove(*list(u.groups.all()))
+            groups = Group.objects.filter(pk__in=group_ids)
+            u.groups.set(groups)
+            u.save()
+            return restfuls.success()
+        except User.DoesNotExist:
+            return restfuls.bad_request('该用户已不存在')

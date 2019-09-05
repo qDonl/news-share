@@ -3,12 +3,20 @@
 
 
 {% block title %}
-   添加员工
+   {% if staff %}
+      编辑员工
+   {% else %}
+      添加员工
+   {% endif %}
 {% endblock %}
 
 
 {% block content_header %}
-   添加员工
+   {% if staff %}
+      编辑员工
+   {% else %}
+      添加员工
+   {% endif %}
 {% endblock %}
 
 
@@ -21,13 +29,23 @@
                   {% csrf_token %}
                   <div class="form-group">
                      <label for="staff-tel">手机号码:</label>
-                     <input type="text" id="staff-tel" name="telephone" class="form-control" placeholder="员工手机号码">
+                     {% if staff %}
+                        <input type="text" id="staff-tel" name="telephone" value="{{ staff.telephone }}" class="form-control" placeholder="员工手机号码" readonly>
+                     {% else %}
+                        <input type="text" id="staff-tel" name="telephone" class="form-control" placeholder="员工手机号码">
+                     {% endif %}
                   </div>
                   <div class="checkbox">
                      {% for group in groups %}
-                        <label style="margin-right: 14px">
-                           <input name="group" type="checkbox" value="{{ group.pk }}">{{ group.name }}
-                        </label>
+                        {% if group in staff_groups %}
+                           <label style="margin-right: 14px">
+                              <input name="group" type="checkbox" value="{{ group.pk }}" checked>{{ group.name }}
+                           </label>
+                        {% else %}
+                           <label style="margin-right: 14px">
+                              <input name="group" type="checkbox" value="{{ group.pk }}">{{ group.name }}
+                           </label>
+                        {% endif %}
                      {% endfor %}
                   </div>
                   <div class="form-group">
@@ -50,5 +68,5 @@
 {% endblock %}
 
 {% block bottom-head %}
-      <script src="{% static 'js/cms/add_staff.min.js' %}"></script>
+   <script src="{% static 'js/cms/staff_operate.min.js' %}"></script>
 {% endblock %}

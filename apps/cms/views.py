@@ -5,9 +5,12 @@ from urllib import parse
 import qiniu
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import permission_required
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
+from django.utils.decorators import method_decorator
 from django.utils.timezone import make_aware
+from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import View
 
@@ -25,7 +28,7 @@ from .models import Banner
 from .serializers import BannerSerializer
 
 
-@staff_member_required(login_url='index')
+@staff_member_required(login_url=reverse_lazy("cms:index"))
 def index(request):
     return render(request, 'cms/index.html')
 
@@ -63,6 +66,7 @@ class PublishNewsView(View):
         return restfuls.bad_request(msg=form.get_errors())
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_GET
 def news_category(request):
     categories = NewsCategory.objects.all()
@@ -72,6 +76,7 @@ def news_category(request):
     return render(request, 'cms/news_category.html', context=context)
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def add_news_category(request):
     name = request.POST.get('name')
@@ -82,6 +87,7 @@ def add_news_category(request):
     return restfuls.bad_request(msg="该分类已经存在")
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def edit_news_category(request):
     form = EditNewsCategoryForm(request.POST)
@@ -96,6 +102,7 @@ def edit_news_category(request):
     return restfuls.bad_request(form.get_errors())
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def delete_category_category(request):
     pk = request.POST.get("pk")
@@ -105,6 +112,7 @@ def delete_category_category(request):
     return restfuls.bad_request(msg="当前分类已不存在")
 
 
+@method_decorator(permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index")), name='dispatch')
 class NewsListView(View):
     # 新闻列表
     def get(self, request):
@@ -200,6 +208,7 @@ class NewsListView(View):
         return rt_pages
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 def edit_news(request):
     news_id = request.GET.get("news")
     try:
@@ -214,6 +223,7 @@ def edit_news(request):
     return render(request, 'cms/publish_news.html', context=context)
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def remove_news(request):
     news_id = request.POST.get('news')
@@ -225,11 +235,13 @@ def remove_news(request):
 
 
 # 轮播图管理
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 def banner(request):
     # 管理轮播图
     return render(request, 'cms/banner.html')
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 def load_banner(request):
     # ajax 加载轮播图
     banners = Banner.objects.all()
@@ -237,6 +249,7 @@ def load_banner(request):
     return restfuls.success(data=serializer.data)
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def add_banner(request):
     # 添加轮播图
@@ -250,6 +263,7 @@ def add_banner(request):
     return restfuls.bad_request(form.get_errors())
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 @require_POST
 def edit_banner(request):
     # 修改轮播图
@@ -269,6 +283,7 @@ def edit_banner(request):
     return restfuls.bad_request(msg=form.get_errors())
 
 
+@permission_required(perm='news.change_news', login_url=reverse_lazy("cms:index"))
 def remove_banner(request):
     bid = request.GET.get('bid')
     banner = get_object_or_404(Banner, pk=bid)
@@ -277,6 +292,7 @@ def remove_banner(request):
 
 
 # 课程管理
+@method_decorator(permission_required(perm='course.delete_course', login_url=reverse_lazy("cms:index")), name='dispatch')
 class PublishCourseView(View):
     def get(self, request):
         categories = CourseCategory.objects.all()
