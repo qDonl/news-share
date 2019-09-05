@@ -1,15 +1,15 @@
 from django.conf import settings
+from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 
+from apps.cms.models import Banner
 from apps.news.models import News, NewsCategory
 from apps.xfzauth.decorators import auth_login_required
 from utils import restfuls
 from .forms import CommentForm
 from .models import Comment
 from .serializers import NewsSerializer, CommentSerializer
-from apps.cms.models import Banner
-from django.db.models import Q
 
 
 def index(request):

@@ -53,8 +53,8 @@
                            {% if staff == user %}
                               <button class="btn btn-warning btn-xs" disabled>不可操作</button>
                            {% else %}
-                              <button class="btn btn-info btn-xs">修改组</button>
-                              <button class="btn btn-danger btn-xs">删除</button>
+                              <button class="btn btn-info btn-xs" data-id="{{ staff.pk }}">修改组</button>
+                              <button class="btn btn-danger btn-xs" data-id="{{ staff.pk }}">删除</button>
                            {% endif %}
                         </td>
                      </tr>

@@ -88,11 +88,9 @@ class PublishCourseForm(forms.ModelForm, FormMixin):
         }
 
 
-# 未解决验证checkbox多个数据
 class AddStaffForm(FormMixin, forms.Form):
     GROUP_CHOICES = tuple((str(group.id), group.name) for group in Group.objects.all())
     telephone = forms.CharField(max_length=11, validators=[
         validators.RegexValidator(r'1[345678]\d{9}',
-                                  message="请输入正确格式的手机号")])
-    group = forms.MultipleChoiceField(choices=GROUP_CHOICES, widget=forms.CheckboxSelectMultiple,
-                                      error_messages={"required": '请选择员工分组', 'invalid_choice': '请选择有效的员工分组'})
+                                  message="请输入正确格式的手机号")],
+                                error_messages={"required": "请输入手机号"})

@@ -13,3 +13,9 @@ urlpatterns = [
     path('sms_captcha/', views.sms_captcha, name='sms_captcha'),
 ]
 
+
+# 测试数据
+from . import test
+urlpatterns += [
+    path('test/', test.test_index, name='test-index'),
+]

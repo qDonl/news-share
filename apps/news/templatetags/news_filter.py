@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from django import template
 from django.utils.timezone import now as now_func
-from datetime import datetime
 
 register = template.Library()
 
@@ -25,3 +26,13 @@ def time_since(value):
         return f"{int(since)}天前"
     else:
         return value.strftime("%Y-%m-%d %H:%M")
+
+
+@register.filter('dict_or_str')
+def dict_or_str(value):
+    print(type(value), value)
+    if isinstance(value, dict):
+        for k, v in value.items():
+            return v[0]
+    else:
+        return value
